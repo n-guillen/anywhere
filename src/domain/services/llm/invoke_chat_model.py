@@ -10,7 +10,7 @@ from .model_response import response_to_context
 import anthropic
 
 # Invoke a chat model
-def invoke_chat_model(window: list[Context]) -> Context:
+def invoke_chat_model(window: list[Context], system: str = None) -> Context:
     """Invoke a chat model and returns its response context.
     
     Args:
@@ -18,6 +18,7 @@ def invoke_chat_model(window: list[Context]) -> Context:
     response = anthropic.Anthropic().messages.create(
         model="claude-3-5-sonnet-20240620",
         max_tokens=(1024 * 3),
+        system=system or "",
         messages=[
             {
                 "role": context.type.value,
