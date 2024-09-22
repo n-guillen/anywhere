@@ -1,12 +1,18 @@
 # Imports
+from src.domain.entities.conversation.conversation import Conversation
+from src.domain.entities.conversation.message import Message, MessageType
+
 from src.domain.entities.llm.context.context import Context, ContextType
 from src.domain.entities.llm.content.text_content import TextContent
 from src.domain.services.llm.invoke_chat_model import invoke_chat_model
-from src.domain.entities.llm.prompts.prompts import system_prompt, example_mom
+from src.domain.entities.llm.prompts.prompts import system_prompt
+from src.domain.services.llm.conversation import format_conversation
+
+from conversation_examples import example_roman
 
 # Create the main system prompt and provide examples
 guidance = "None."
-examples = example_mom
+examples = example_roman
 
 response_prompt = f"""
 {system_prompt}
@@ -18,15 +24,11 @@ response_prompt = f"""
 
 conversation = f"""
 <real>
-    <conversation>
-        <other>
-            Thank you for taking care of your little brother. You have no idea how much this means.
-            You're a sweetheart. Please call if y'all need anything. Love you 🙏❤️
-        </other>
-        <other>
-            He looks good in that car!! 😁
-        </other>
-    </conversation>
+    {format_conversation(
+        Conversation([
+            Message("Hey bro! Going to canes with some of my friends!! Tell the fam, love you!! ❤️", MessageType.other),
+        ])
+    )}
 </real>
 """
 
