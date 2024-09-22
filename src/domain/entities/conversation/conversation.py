@@ -8,5 +8,5 @@ This module defines a conversation.
 from .message import Message
 
 class Conversation:
-    def __init__(self):
-        self.messages: list[Message]
+    def __init__(self, messages: list[Message] = None):
+        self.messages: list[Message] = messages
