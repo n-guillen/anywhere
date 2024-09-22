@@ -15,7 +15,9 @@ def format_conversation(conversation: Conversation) -> str:
     Args:
         conversation (conversation): The conversation to format."""
     format = ""
-    for message in conversation:
-        formatted_message = f"<{message.type}>{message.text}</{message.type}>"
-        format =+ formatted_message
+    for message in conversation.messages:
+        formatted_message = (
+            f"<{message.type.value}>{message.text}</{message.type.value}>"
+        )
+        format += formatted_message
     return f"<conversation>{format}</conversation>"
