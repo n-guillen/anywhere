@@ -14,7 +14,8 @@ def invoke_chat_model(window: list[Context], system: str = None) -> Context:
     """Invoke a chat model and returns its response context.
     
     Args:
-        window (list): The context window for a chat model to process a response for."""
+        window (list): The context window for a chat model to process a response for.
+        system (str): The system prompt for the model to follow."""
     response = anthropic.Anthropic().messages.create(
         model="claude-3-5-sonnet-20240620",
         max_tokens=(1024 * 3),
