@@ -11,11 +11,19 @@ from src.domain.services.llm.conversation import format_conversation
 from conversation_examples import example_roman
 
 # Create the main system prompt and provide examples
-guidance = "None."
+mirror = f"""
+    <firstname>Noah</firstname>
+    <lastname>Guillen</lastname>
+    <age>20</age>
+    <dob>10/26/2003</dob>
+"""
+guidance = "my plans changed ill be back soon"
 examples = example_roman
 
 response_prompt = f"""
 {system_prompt}
+
+<mirror>{mirror}</mirror>
 
 <examples>{examples}</examples>
 
@@ -26,7 +34,7 @@ conversation = f"""
 <real>
     {format_conversation(
         Conversation([
-            Message("Hey bro! Going to canes with some of my friends!! Tell the fam, love you!! ❤️", MessageType.other),
+            Message("You all good bro ?", MessageType.other),
         ])
     )}
 </real>
